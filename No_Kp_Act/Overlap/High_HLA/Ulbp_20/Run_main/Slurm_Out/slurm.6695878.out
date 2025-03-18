@@ -1,0 +1,37 @@
+SPPARKS (18 May 2017)
+Created box = (0 0 0) to (91 91 1)
+  1 by 1 by 1 processor grid
+Creating sites ...
+  8281 sites
+  8281 sites have 6 neighbors
+Reading site file ...
+  182182 values
+Setting site values ...
+  8281 settings made for i2
+Setting up run ...
+Running with 32-bit site IDs
+Memory usage per processor = 8 Mbytes
+      Time    Naccept    Nreject    Nsweeps        CPU   Propnsty    sum(i1)    sum(i2)    sum(i3)    sum(i4)    sum(i5)    sum(i6)    sum(i7)    sum(i8)    sum(i9)   sum(i10)   sum(i11)   sum(i12)   sum(i13)   sum(i14)   sum(i15)   sum(i16)   sum(i17)   sum(i18)   sum(i19)   sum(i20)   sum(i21)   sum(i22)   sum(i23)   sum(i24)   sum(i25)   sum(i26)   sum(i27)   sum(i28)   sum(i29)   sum(i30)   sum(i31)   sum(i32)   sum(i33)   sum(i34)   sum(i35)   sum(i36)   sum(i37)   sum(i38)   sum(i39)   sum(i40)   sum(i41)   sum(i42)   sum(i43)   sum(i44)   sum(i45)   sum(i46)   sum(i47)   sum(i48)   sum(i49)   sum(i50)
+         0          0          0          0          0 2.10694e+06         20       8281     380926     380926          0         53          0          0      32064      18351          0          0          0          0          0        581       1068      11686      11686          0          0      49871          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0
+   1.00391    1054759          0        134       68.5     981988         18       8281     380926     380926          0         51          0          1      28908      18351          0          0          1          0          0        581       1068       5865       5865        100       1305      48610       1261       3155          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0
+    2.0047    2013076          0        256        130     935190         18       8281     380926     380926          0         51          0          0      28700      18350          0          0          1          1          0        581       1068       4578       4578         93       1432      47650       2221       3362          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0
+   3.00031    2925036          0        372        188     907135         17       8281     380926     380926          0         50          0          0      28580      18349          0          0          1          2          0        581       1068       3845       3845        105       1526      47142       2729       3481          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0
+   4.00199    3821308          0        485        244     882502         16       8281     380926     380926          0         49          0          2      28378      18349          0          0          0          2          0        581       1068       3368       3368         97       1529      46863       3008       3684          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0
+   5.00341    4699996          0        596        299     874768         17       8281     380926     380926          0         49          0          1      28344      18348          0          0          0          2          0        581       1068       3116       3116        108       1668      46794       3077       3717          0          0          0          0          0          0          0          0          0          0          0          0          0          0          1          0          0          0          0          0          0          0          0          0          0          0
+         6    5567705          0        706        353     864587         15       8281     380926     380926          0         48          0          1      28219      18347          0          0          0          4          0        581       1068       2932       2932        103       1663      46724       3147       3841          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0
+Loop time of 353.401 on 1 procs
+
+Solve time (%) = 1.33506 (0.377774)
+Update time (%) = 0 (0)
+Comm  time (%) = 7.77322 (2.19955)
+Outpt time (%) = 0.778332 (0.220241)
+App   time (%) = 343.296 (97.1407)
+Other time (%) = 0.218336 (0.0617813)
+Job Statistics for 6695878:
+           JobID       User               Start                 End    Elapsed   TotalCPU      State        NodeList 
+---------------- ---------- ------------------- ------------------- ---------- ---------- ---------- --------------- 
+         6695878     sxa126 2025-03-17T17:00:38 2025-03-17T17:06:34   00:05:56  05:53.568  COMPLETED   r1pl-hpcf-n21 
+   6695878.batch            2025-03-17T17:00:38 2025-03-17T17:06:34   00:05:56  05:53.566  COMPLETED   r1pl-hpcf-n21 
+  6695878.extern            2025-03-17T17:00:38 2025-03-17T17:06:34   00:05:56  00:00.002  COMPLETED   r1pl-hpcf-n21 
+Requested Resources: billing=1,cpu=1,mem=7455M,node=1
+Maximum CPU Memory: 145.37M; 	CPU Efficiency: 99.44% of 00:05:56 core-walltime

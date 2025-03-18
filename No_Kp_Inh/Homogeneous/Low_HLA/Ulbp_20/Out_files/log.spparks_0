@@ -1,0 +1,267 @@
+seed     397
+
+app_style    inb/diff/custom
+
+dimension    3
+lattice      sc/6n 1
+region       box block 0 91 0 91 0 1
+create_box   box
+Created box = (0 0 0) to (91 91 1)
+  1 by 1 by 1 processor grid
+create_sites box
+Creating sites ...
+  8281 sites
+  8281 sites have 6 neighbors
+
+region       global_bottom block 0 91 0 91 0 0
+#region       sim_box block 0 10 0 10 0 0
+#region       nkg2d block 5 5 5 5 0 0
+#region       nkg2d_clus block 3 7 3 7 0 0
+#region       kir_clus block 3 6 3 6 0 0
+
+read_sites       /gpfs0/home1/gddaslab/sxa126/NKR_Nano_Clustering/NKR_NKG2D_Codes/Kp_Both/Homogeneous/Low_HLA/Ulbp_20/Init_files/input_sppark.nkg2d_kir_ulbp3_hla.homogeneous_0
+  182182 values
+
+#set      i1 value 1 region global_bottom fraction 0.02
+set      i2 value 1 region global_bottom
+  8281 settings made for i2
+#set      i6 value 1 region nkg2d
+#set      i9 value 3 region global_bottom
+#set      i10 value 2 region global_bottom
+#set      i16 value 1 region nkg2d_clus
+#set      i17 value 1 region kir_clus
+#set      i18 value 1 region global_bottom fraction 0.81
+#set      i19 value 1 region kir_clus fraction 0.9
+#set      i22 value 4 region global_bottom
+#set      i27 value 1 region global_bottom
+
+sector   yes
+solve_style  tree 
+
+# species (note that in the C++ code indexing starts at 0 instead of 1)
+add_species  l # i1 - unbound activating ligand
+add_species  E # i2 - empty space (i.e. not a wall or free surface)
+add_species  y # i3 - X cord 
+add_species  Y # i4 - Y cord 
+add_species  N # i5 - Voxel No.a
+add_species  a # i6 - unbound activating receptors
+add_species  A # i7 - bound activating receptors
+add_species  p # i8 - phosphorylated bound activating receptors
+add_species  k # i9 - SFK kinases
+add_species  v # i10 -  unbounb Vav1s
+add_species  V # 11 -  bounb Vav1s
+add_species  P # i12 - phosphorylated Vav1 attached to AR_p
+add_species  c # i13 - Lck+A complex 
+add_species  C # i14 - AR_p +vav+bounb SFK complex 
+add_species  f # i15 - free/unbound phosphorylated vav
+add_species  W # i16 - AR cluster
+add_species  w # i17 - IR cluster
+add_species  L # i18 - unbound inhibiting ligands
+add_species  i # i19 - unbound inhibiting receprors
+add_species  I # i20 - bound inhibiting receprors
+add_species  h # i21 - phosphorylated bound inhibiting receprors
+add_species  s # i22 - unbound SHP
+add_species  S # i23 - bound SHP
+add_species  x # i24 - Lck+I complex
+add_species  G # i25 - SHP attached to IR_p + p_Vav attached to AR_p
+add_species  g # i26 - SHP attached to IR_p + free p_Vav
+add_species  b # i27 - global sim box
+add_species  B # i28 - boundary of sim_box (next to wall)
+add_species  r # i29 - unbound vav'
+add_species  R # i30 - bound vav'
+add_species  D # i31 - ARp+bound vav'
+add_species  Q # i32 - phos vav'+ARp
+add_species  F # i33 - free phos vav'
+add_species  Z # i34 - Shp+phos vav'+ARp
+add_species  z # i35 - SHP+free phos vav'
+add_species  j # i36 - NKG2D-SFK
+add_species  H # i37 - pNKG2D-vav
+add_species  t # i38 - pNKG2D
+add_species  e # i39 - pNKG2D-vav-SFK
+add_species  J # i40 - pNKG2D-pVav
+add_species  K # i41 - pKIR-SHP-pNKG2D-pVav
+add_species  M # i42 - pKIR-SHP
+add_species  o # i43 - KIR-SFK
+add_species  O # i44 - pKIR
+add_species  T # i45 - pKIR-SHP-pNKG2D-vav
+add_species  U # i46 - pKIR-HLA-SHP-pNKG2D-pvav
+add_species  X # i47 - pKIR-SHP-pNKG2D-NKG2L-pvav
+add_species  u # i48 - pKIR-SHP-pNKG2D-NKG2L-pvav
+add_species  d # i49 - pKIR-SHP-pNKG2D-NKG2L-pvav
+add_species  m # i50 - pKIR-SHP-pNKG2D-NKG2L-pvav
+
+# #AR + L_A
+add_rxn      0 local l a nbr 12.3854688 local A nbr
+add_rxn      1 local A nbr 0.023 local l a nbr
+
+# diffusion AR , SFK(s) vav(v)
+
+add_rxn      2 local l nbr E 6.25 local nbr l E
+add_rxn      3 local a nbr E 6.25 local nbr a E
+add_rxn      4 local k nbr E 6.25 local nbr k E
+
+# AR+kinase
+add_rxn      5 local A k nbr 50.0 local c nbr
+add_rxn      6 local c nbr 0.006 local A k nbr
+
+# phophorylation of  AR
+add_rxn      7 local c nbr 2.1899058353952916 local p k nbr
+
+# AR_p + vav
+add_rxn      8 local p v nbr 0.63421875 local V nbr
+add_rxn      9 local V nbr 0.01 local p v nbr
+
+# ARp_vav + SFK
+add_rxn      10 local V k nbr 50.0 local C nbr
+add_rxn      11 local C nbr 0.028317078876353527 local V k nbr
+
+# Vav phosphoyntion attached to AP_p
+add_rxn      12 local C nbr 0.7762549321707577 local P k nbr
+
+# dephospho
+add_rxn      13 local P nbr 1.0 local V nbr
+add_rxn      14 local p nbr 2.0 local A nbr
+
+# dissociation complex-phosphoVav to AR_p + phosp-vav
+add_rxn      15 local P nbr 0.01 local p f nbr
+add_rxn      16 local p f nbr 0.63421875 local P nbr
+
+# dephospho of free pvav
+add_rxn      17 local f nbr 1.0 local v nbr
+
+# dissociation of Ar complexes 
+add_rxn      18 local c nbr 0.023 local l a k nbr
+add_rxn      19 local p nbr 0.023 local l a nbr
+add_rxn      20 local V nbr 0.023 local l a v nbr
+add_rxn      21 local C nbr 0.023 local l a v k nbr
+add_rxn      22 local P nbr 0.023 local l a v nbr
+
+#diffusion
+add_rxn      23 local i nbr E 6.25 local nbr i E
+
+# #IR + L_I
+add_rxn      24 local L i nbr 50.0 local I nbr
+add_rxn      25 local I nbr 1.0 local L i nbr
+
+# AR+kinase
+add_rxn      26 local I k nbr 50.0 local x nbr
+add_rxn      27 local x nbr 0.006 local I k nbr
+
+# phophorylation of  IR
+add_rxn      28 local x nbr 2.1899058353952916 local h k nbr
+
+# IR_p + Shp
+add_rxn      29 local h s nbr 0.375 local S nbr
+add_rxn      30 local S nbr 0.000509 local h s nbr
+
+# dephospho of IRp
+add_rxn      31 local h nbr 2.0 local I nbr
+
+# (bound_SHP + IR_p complex) + (p_VAv + AR_p) complex
+add_rxn      32 local S P nbr 50.0 local G nbr
+add_rxn      33 local G nbr 0.01 local S P nbr
+
+# dephospho of dephosphorylation of pVAVcomplex due to bound-SHP
+add_rxn      34 local G nbr 10.0 local S V nbr
+
+# (bound_SHP + IR_p complex) + (p_VAv + AR_p) complex
+add_rxn      35 local S f nbr 6.3421875 local g nbr
+add_rxn      36 local g nbr 0.01 local S f nbr
+
+# dephospho of dephosphorylation of pVAVcomplex due to bound-SHP
+add_rxn      37 local g nbr 10.0 local S v nbr
+
+# dissociation of IR complexes 
+add_rxn      38 local x nbr 0.0 local L i k nbr
+add_rxn      39 local h nbr 0.0 local L i nbr
+add_rxn      40 local S nbr 0.0 local L i s nbr
+add_rxn      41 local G nbr 0.0 local L i s P nbr
+add_rxn      42 local G nbr 0.023 local l a v S nbr
+add_rxn      43 local g nbr 0.0 local L i s v nbr
+
+#diffusion
+add_rxn      44 local L nbr E 6.25 local nbr L E
+
+add_rxn      45 local l j nbr 0.0 local c nbr
+add_rxn      46 local c nbr 0.0 local l j nbr
+
+add_rxn      47 local j nbr 0.0 local a k nbr
+
+add_rxn      48 local l H nbr 0.0 local V nbr
+add_rxn      49 local V nbr 0.0 local l H nbr
+
+add_rxn      50 local H nbr 0.0 local t v nbr
+
+add_rxn      51 local l t nbr 0.0 local p nbr
+add_rxn      52 local p nbr 0.0 local l t nbr
+
+add_rxn      53 local l e nbr 0.0 local C nbr
+add_rxn      54 local C nbr 0.0 local l e nbr
+
+add_rxn      55 local e nbr 0.0 local H k nbr
+
+add_rxn      56 local e nbr 0.0 local J k nbr
+
+add_rxn      57 local l J nbr 0.0 local P nbr
+add_rxn      58 local P nbr 0.0 local l J nbr
+
+add_rxn      59 local l U nbr 0.0 local G nbr
+add_rxn      60 local G nbr 0.0 local l U nbr
+
+add_rxn      61 local l K nbr 0.0 local X nbr
+add_rxn      62 local X nbr 0.0 local l K nbr
+
+add_rxn      63 local K nbr 0.0 local M J nbr
+add_rxn      64 local J nbr 0.0 local t f nbr
+
+add_rxn      65 local L o nbr 50.0 local x nbr
+add_rxn      66 local x nbr 1.0 local L o nbr
+
+add_rxn      67 local L O nbr 50.0 local h nbr
+add_rxn      68 local h nbr 1.0 local L O nbr
+
+add_rxn      69 local L M nbr 50.0 local S nbr
+add_rxn      70 local S nbr 1.0 local L M nbr
+
+add_rxn      71 local L X nbr 50.0 local G nbr
+add_rxn      72 local G nbr 1.0 local L X nbr
+
+add_rxn      73 local L K nbr 50.0 local U nbr
+add_rxn      74 local U nbr 1.0 local L K nbr
+
+add_rxn      75 local o nbr 0.006 local i k nbr
+add_rxn      76 local M nbr 0.0005 local O s nbr
+add_rxn      77 local o nbr 2.189 local O k nbr
+add_rxn      78 local X nbr 10.0 local  M V nbr
+add_rxn      79 local U nbr 10.0 local S H nbr
+add_rxn      80 local K nbr 10.0 local M H nbr
+add_rxn      81 local J nbr 1.0 local H nbr
+add_rxn      82 local t nbr 2.0 local a nbr
+add_rxn      83 local O nbr 2.0 local i nbr
+
+diag_style   propensity
+diag_style   array i1 sum i2 sum i3 sum i4 sum i5 sum i6 sum i7 sum i8 sum i9 sum i10 sum i11 sum i12 sum i13 sum i14 sum i15 sum i16 sum i17 sum i18 sum i19 sum i20 sum i21 sum i22 sum i23 sum i24 sum i25 sum i26 sum i27 sum i28 sum i29 sum i30 sum i31 sum i32 sum i33 sum i34 sum i35 sum i36 sum i37 sum i38 sum i39 sum i40 sum i41 sum i42 sum i43 sum i44 sum i45 sum i46 sum i47 sum i48 sum i49 sum i50 sum
+
+stats           1.0
+dump            1 sites 1.0 /gpfs0/home1/gddaslab/sxa126/NKR_Nano_Clustering/NKR_NKG2D_Codes/No_Kp_Inh/Homogeneous/Low_HLA/Ulbp_20/Out_files/sites.0.* id i1 i2 i3 i4 i5 i6 i7 i8 i9 i10 i11 i12 i13 i14 i15 i16 i17 i18 i19 i20 i21 i22 i23 i24 i25 i26 i27 i28 i29 i30 i31 i32 i33 i34 i35 i36 i37 i38 i39 i40 i41 i42 i43 i44 i45 i46 i47 i48 i49 i50
+
+run             6
+Setting up run ...
+Running with 32-bit site IDs
+Memory usage per processor = 8 Mbytes
+      Time    Naccept    Nreject    Nsweeps        CPU   Propnsty    sum(i1)    sum(i2)    sum(i3)    sum(i4)    sum(i5)    sum(i6)    sum(i7)    sum(i8)    sum(i9)   sum(i10)   sum(i11)   sum(i12)   sum(i13)   sum(i14)   sum(i15)   sum(i16)   sum(i17)   sum(i18)   sum(i19)   sum(i20)   sum(i21)   sum(i22)   sum(i23)   sum(i24)   sum(i25)   sum(i26)   sum(i27)   sum(i28)   sum(i29)   sum(i30)   sum(i31)   sum(i32)   sum(i33)   sum(i34)   sum(i35)   sum(i36)   sum(i37)   sum(i38)   sum(i39)   sum(i40)   sum(i41)   sum(i42)   sum(i43)   sum(i44)   sum(i45)   sum(i46)   sum(i47)   sum(i48)   sum(i49)   sum(i50)
+         0          0          0          0          0 1.50635e+06         20       8281     380926     380926          0         53          0          0      32064      18351          0          0          0          0          0       8281       8281       4213      11686          0          0      49871          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0
+    1.0037     951287          0        119       60.3     931194         20       8281     380926     380926          0         53          0          0      30010      18351          0          0          0          0          0       8281       8281         81       6302         20        886      47933       1563       1663          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0        375        391        486          0          0          0          0          0          0
+   2.00563    1882974          0        235        119     927493         19       8281     380926     380926          0         52          0          1      30598      18351          0          0          0          0          0       8281       8281         70       5640         21        643      46434       2303       1176          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0       1134        290        479          0          0          0          0          0          0
+   3.00004    2800663          0        349        177     919362         19       8281     380926     380926          0         52          0          0      30898      18350          0          0          0          1          0       8281       8281         59       5068         20        516      45302       2692        926          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0       1877        239        348          0          0          0          0          0          0
+   4.00447    3718903          0        463        234     906274         19       8281     380926     380926          0         52          0          0      31074      18350          0          0          0          1          0       8281       8281         68       4487         12        424      44387       2907        802          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0       2577        187        290          0          0          0          0          0          0
+   5.00831    4623247          0        575        290     894065         15       8281     380926     380926          0         48          0          2      31178      18350          0          0          2          1          0       8281       8281         67       3906         14        376      43626       3024        732          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0       3221        151        262          0          0          0          0          0          0
+         6    5505109          0        684        345     883904         14       8281     380926     380926          0         47          0          1      31281      18347          0          1          1          3          0       8281       8281         65       3406         16        350      42964       3139        643          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0       3768        136        228          0          0          0          0          0          0
+Loop time of 344.911 on 1 procs
+
+Solve time (%) = 1.31161 (0.380276)
+Update time (%) = 0 (0)
+Comm  time (%) = 7.41489 (2.1498)
+Outpt time (%) = 0.789734 (0.228968)
+App   time (%) = 335.178 (97.1783)
+Other time (%) = 0.216032 (0.0626341)

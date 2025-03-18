@@ -1,0 +1,37 @@
+SPPARKS (18 May 2017)
+Created box = (0 0 0) to (91 91 1)
+  1 by 1 by 1 processor grid
+Creating sites ...
+  8281 sites
+  8281 sites have 6 neighbors
+Reading site file ...
+  182182 values
+Setting site values ...
+  8281 settings made for i2
+Setting up run ...
+Running with 32-bit site IDs
+Memory usage per processor = 6.25 Mbytes
+      Time    Naccept    Nreject    Nsweeps        CPU   Propnsty    sum(i1)    sum(i2)    sum(i3)    sum(i4)    sum(i5)    sum(i6)    sum(i7)    sum(i8)    sum(i9)   sum(i10)   sum(i11)   sum(i12)   sum(i13)   sum(i14)   sum(i15)   sum(i16)   sum(i17)   sum(i18)   sum(i19)   sum(i20)   sum(i21)   sum(i22)   sum(i23)   sum(i24)   sum(i25)   sum(i26)   sum(i27)   sum(i28)   sum(i29)   sum(i30)   sum(i31)   sum(i32)   sum(i33)   sum(i34)   sum(i35)
+         0          0          0          0          0 2.21108e+06         20       8281     380926     380926          0         53          0          0      32064      18351          0          0          0          0          0       8281       8281      11686      11686          0          0      49871          0          0          0          0          0          0          0          0          0          0          0          0          0
+   1.00096     831813          0        105       28.4     804593         20       8281     380926     380926          0         53          0          0      27018      18351          0          0          0          0          0       8281       8281       1403       1403        130       2277      47041       2830       5046          0          0          0          0          0          0          0          0          0          0          0
+   2.00105    1639946          0        206       55.6     808151         20       8281     380926     380926          0         53          0          0      27492      18351          0          0          0          0          0       8281       8281       1334       1334        116       1931      46138       3733       4572          0          0          0          0          0          0          0          0          0          0          0
+   3.00096    2451304          0        307         83     814327         19       8281     380926     380926          0         52          0          0      27701      18351          0          0          1          0          0       8281       8281       1335       1335        118       1962      45962       3909       4362          0          0          0          0          0          0          0          0          0          0          0
+   4.00647    3268033          0        409        111     809429         17       8281     380926     380926          0         50          0          1      27677      18351          0          0          2          0          0       8281       8281       1300       1300        112       1999      45981       3890       4385          0          0          0          0          0          0          0          0          0          0          0
+   5.00422    4076326          0        510        138     808471         15       8281     380926     380926          0         48          0          1      27614      18349          0          1          2          1          0       8281       8281       1302       1302        113       1987      46034       3837       4447          0          0          0          0          0          0          0          0          0          0          0
+         6    4882184          0        611        165     811294         13       8281     380926     380926          0         46          0          0      27709      18348          0          0          4          3          0       8281       8281       1338       1338        120       1914      45905       3966       4348          0          0          0          0          0          0          0          0          0          0          0
+Loop time of 165.001 on 1 procs
+
+Solve time (%) = 1.1491 (0.696417)
+Update time (%) = 0 (0)
+Comm  time (%) = 3.57321 (2.16556)
+Outpt time (%) = 0.495918 (0.300554)
+App   time (%) = 159.591 (96.7212)
+Other time (%) = 0.191857 (0.116276)
+Job Statistics for 6695602:
+           JobID       User               Start                 End    Elapsed   TotalCPU      State        NodeList 
+---------------- ---------- ------------------- ------------------- ---------- ---------- ---------- --------------- 
+         6695602     sxa126 2025-03-17T15:18:09 2025-03-17T15:20:56   00:02:47  02:45.738  COMPLETED   r1pl-hpcf-n22 
+   6695602.batch            2025-03-17T15:18:09 2025-03-17T15:20:56   00:02:47  02:45.736  COMPLETED   r1pl-hpcf-n22 
+  6695602.extern            2025-03-17T15:18:09 2025-03-17T15:20:56   00:02:47  00:00.002  COMPLETED   r1pl-hpcf-n22 
+Requested Resources: billing=1,cpu=1,mem=7455M,node=1
+Maximum CPU Memory: 144.22M; 	CPU Efficiency: 99.40% of 00:02:47 core-walltime

@@ -1,0 +1,159 @@
+# SPPARKS 
+
+log      /gpfs0/home1/gddaslab/sxa126/NKR_Nano_Clustering/NKR_NKG2D_Codes/Kp_Both/Homogeneous/Low_HLA/Ulbp_20/Out_files/log.spparks_0
+seed     8132
+
+app_style    inb/diff/custom
+
+dimension    3
+lattice      sc/6n 1
+region       box block 0 91 0 91 0 1
+create_box   box
+create_sites box
+
+region       global_bottom block 0 91 0 91 0 0
+
+read_sites       /gpfs0/home1/gddaslab/sxa126/NKR_Nano_Clustering/NKR_NKG2D_Codes/Kp_Both/Homogeneous/Low_HLA/Ulbp_20/Init_files/input_sppark.nkg2d_kir_ulbp3_hla.homogeneous_0
+
+set      i2 value 1 region global_bottom
+
+sector   yes
+solve_style  tree 
+
+# species (note that in the C++ code indexing starts at 0 instead of 1)
+add_species  l # i1 - NKG2DL
+add_species  E # i2 - empty space (i.e. not a wall or free surface)
+add_species  y # i3 - X cord 
+add_species  Y # i4 - Y cord 
+add_species  N # i5 - Voxel No.a
+add_species  a # i6 - NKG2D
+add_species  A # i7 - NKG2D-NKG2DL
+add_species  p # i8 - pNKG2D-NKG2DL
+add_species  k # i9 - SFK kinases
+add_species  v # i10 -  unbounb Vav1s
+add_species  V # 11 -  bounb Vav1s
+add_species  P # i12 - phosphorylated Vav1 attached to AR_p
+add_species  c # i13 - Lck+A complex 
+add_species  C # i14 - AR_p +vav+bounb SFK complex 
+add_species  f # i15 - free/unbound phosphorylated vav
+add_species  W # i16 - AR cluster
+add_species  w # i17 - IR cluster
+add_species  L # i18 - unbound inhibiting ligands
+add_species  i # i19 - unbound inhibiting receprors
+add_species  I # i20 - bound inhibiting receprors
+add_species  h # i21 - phosphorylated bound inhibiting receprors
+add_species  s # i22 - unbound SHP
+add_species  S # i23 - bound SHP
+add_species  x # i24 - Lck+I complex
+add_species  G # i25 - SHP attached to IR_p + p_Vav attached to AR_p
+add_species  g # i26 - SHP attached to IR_p + free p_Vav
+add_species  b # i27 - global sim box
+add_species  B # i28 - boundary of sim_box (next to wall)
+add_species  r # i29 - unbound vav'
+add_species  R # i30 - bound vav'
+add_species  D # i31 - ARp+bound vav'
+add_species  Q # i32 - phos vav'+ARp
+add_species  F # i33 - free phos vav'
+add_species  Z # i34 - Shp+phos vav'+ARp
+add_species  z # i35 - SHP+free phos vav'
+
+# NKG2D + NKG2DL1 <--> NKG2D-NKG2DL
+add_rxn      0 local l a nbr 12.3854688 local A nbr
+add_rxn      1 local A nbr 0.023 local l a nbr
+
+# diffusion NKG2DL, NKG2D and SFKs
+
+add_rxn      2 local l nbr E 6.25 local nbr l E
+add_rxn      3 local a nbr E 6.25 local nbr a E
+add_rxn      4 local k nbr E 6.25 local nbr k E
+
+# NKG2D-NKG2DL + SFK <--> NKG2D-NKG2DL-SFK
+add_rxn      5 local A k nbr 50.0 local c nbr
+add_rxn      6 local c nbr 0.006 local A k nbr
+
+# NKG2D-NKG2DL-SFK --> pNKG2D-NKG2DL + SFK
+add_rxn      7 local c nbr 2.1899058353952916 local p k nbr
+
+# pNKG2D-NKG2DL + Vav <--> pNKG2D-NKG2DL-Vav
+add_rxn      8 local p v nbr 0.63421875 local V nbr
+add_rxn      9 local V nbr 0.01 local p v nbr
+
+# pNKG2D-NKG2DL-Vav + SFK <--> pNKG2D-NKG2DL-Vav-SFK
+add_rxn      10 local V k nbr 50.0 local C nbr
+add_rxn      11 local C nbr 0.028317078876353527 local V k nbr
+
+# pNKG2D-NKG2DL-Vav-SFK --> pNKG2D-NKG2DL-pVav +SFK
+add_rxn      12 local C nbr 0.7762549321707577 local P k nbr
+
+# dephospho
+add_rxn      13 local P nbr 1.0 local V nbr
+add_rxn      14 local p nbr 2.0 local A nbr
+
+# dissociation complex-phosphoVav to AR_p + phosp-vav
+add_rxn      15 local P nbr 0.01 local p f nbr
+add_rxn      16 local p f nbr 0.63421875 local P nbr
+
+# dephospho of free pvav
+add_rxn      17 local f nbr 1.0 local v nbr
+
+# dissociation of Ar complexes 
+add_rxn      18 local c nbr 0.023 local l a k nbr
+add_rxn      19 local p nbr 0.023 local l a nbr
+add_rxn      20 local V nbr 0.023 local l a v nbr
+add_rxn      21 local C nbr 0.023 local l a v k nbr
+add_rxn      22 local P nbr 0.023 local l a v nbr
+
+# diffusion
+add_rxn      23 local i nbr E 6.25 local nbr i E
+
+# IR + L_I
+add_rxn      24 local L i nbr 50.0 local I nbr
+add_rxn      25 local I nbr 1.0 local L i nbr
+
+# AR+kinase
+add_rxn      26 local I k nbr 50.0 local x nbr
+add_rxn      27 local x nbr 0.006 local I k nbr
+
+# phophorylation of  IR
+add_rxn      28 local x nbr 2.1899058353952916 local h k nbr
+
+# IR_p + Shp
+add_rxn      29 local h s nbr 0.375 local S nbr
+add_rxn      30 local S nbr 0.000509 local h s nbr
+
+# dephospho of IRp
+add_rxn      31 local h nbr 2.0 local I nbr
+
+# (bound_SHP + IR_p complex) + (p_VAv + AR_p) complex
+add_rxn      32 local S P nbr 50.0 local G nbr
+add_rxn      33 local G nbr 0.01 local S P nbr
+
+# dephospho of dephosphorylation of pVAVcomplex due to bound-SHP
+add_rxn      34 local G nbr 10.0 local S V nbr
+
+# (bound_SHP + IR_p complex) + (p_VAv + AR_p) complex
+add_rxn      35 local S f nbr 6.3421875 local g nbr
+add_rxn      36 local g nbr 0.01 local S f nbr
+
+# dephospho of dephosphorylation of pVAVcomplex due to bound-SHP
+add_rxn      37 local g nbr 10.0 local S v nbr
+
+# dissociation of IR complexes 
+add_rxn      38 local x nbr 1.0 local L i k nbr
+add_rxn      39 local h nbr 1.0 local L i nbr
+add_rxn      40 local S nbr 1.0 local L i s nbr
+add_rxn      41 local G nbr 1.0 local L i s P nbr
+add_rxn      42 local G nbr 0.023 local l a v S nbr
+add_rxn      43 local g nbr 1.0 local L i s v nbr
+
+# diffusion
+add_rxn      44 local L nbr E 6.25 local nbr L E
+
+
+diag_style   propensity
+diag_style   array i1 sum i2 sum i3 sum i4 sum i5 sum i6 sum i7 sum i8 sum i9 sum i10 sum i11 sum i12 sum i13 sum i14 sum i15 sum i16 sum i17 sum i18 sum i19 sum i20 sum i21 sum i22 sum i23 sum i24 sum i25 sum i26 sum i27 sum i28 sum i29 sum i30 sum i31 sum i32 sum i33 sum i34 sum i35 sum
+
+stats           1.0
+dump            1 sites 1.0 /gpfs0/home1/gddaslab/sxa126/NKR_Nano_Clustering/NKR_NKG2D_Codes/Kp_Both/Homogeneous/Low_HLA/Ulbp_20/Out_files/sites.0.* id i1 i2 i3 i4 i5 i6 i7 i8 i9 i10 i11 i12 i13 i14 i15 i16 i17 i18 i19 i20 i21 i22 i23 i24 i25 i26 i27 i28 i29 i30 i31 i32 i33 i34 i35
+
+run             6
