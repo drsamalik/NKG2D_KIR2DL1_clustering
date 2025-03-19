@@ -16,3 +16,15 @@ This project includes in-silico signaling modeling and information theory and im
 ├── requirements.txt    # Python dependencies
 ├── README.md           # This file
 └── LICENSE             # License file
+
+## 📂 Data Folder (`data/`)  
+
+The `data/` directory contains all the datasets used in this case study. It includes raw from references (doi:10.1126/scisignal.aal3606 and doi: 10.1016/j.celrep.2016.04.075), processed after randomization. 
+
+## 📂 src Folder (`src/`)  
+
+The `src/` directory contains spparks code to Monte-Carlo simulation. 
+
+Remianing folder are to run the code for different stages of Kintic proof reading which futher can be analysed after generating at later time.
+
+
