@@ -10,7 +10,7 @@ The `data/` directory contains all the datasets used in this case study. It incl
 
 The `src/` directory contains spparks code to Monte-Carlo simulation. 
 
-Remianing folder are to run the code for different stages of Kintic proof reading which futher can be analysed after generating at later time.
+Remianing folder are to run the code for different stages of Kintic proof reading which futher can be analysed after generating data at later time.
 ---
 ## 📂 Repository Structure  
 
